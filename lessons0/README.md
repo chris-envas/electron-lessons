@@ -1,6 +1,8 @@
-Electron入门系列一
+### 第一章
 
-如果你是第一次接触Electron，你应该先去[官网](https://electronjs.org/)了解看看，通过官方提供的一个快速启动程序，立即看看Electron是如何运转的
+
+
+> 如果你是第一次接触Electron，你应该先去[官网](https://electronjs.org/)了解看看，通过官方提供的一个快速启动程序，立即看看Electron是如何运转的
 
 ```javascript
 # 克隆示例项目的仓库
