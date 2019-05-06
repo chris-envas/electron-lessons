@@ -13,5 +13,5 @@
 - [第二章-主进程与渲染进程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons1)  
 
 
-共勉！！！
+加油共勉！！！
 
