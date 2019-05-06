@@ -9,7 +9,7 @@
 ### 章节目录
 ------
 [第一章-开始构建](https://github.com/luojinxu520/electron-lessons/tree/master/lessons0)  
-[第二章-主进程与渲染进程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons0)  
+[第二章-主进程与渲染进程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons1)  
 
 
 共勉！！！
