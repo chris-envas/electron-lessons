@@ -9,6 +9,9 @@
 后来发现了`Electron`,一番考察下来，发现还可以（打包体积这么大，有点受不了啊-  -），于是乎便开始着手学习，在参考了不少前人的项目经验后，决定从头到尾的学习一遍Electron，也顺便把自己的学习记录总结下来，希望能给准备学习`Electron`的同学提供一点点帮助
 
 
+[第一章-开始构建](https://github.com/luojinxu520/electron-lessons/tree/master/lessons0)
+[第二章-主进程与渲染进程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons0)
+
 
 共勉！！！
 
