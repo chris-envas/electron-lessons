@@ -13,7 +13,6 @@ app.on('ready', () => {
        }
     }
     onewin = new BrowserWindow(WindowOption)
-    onewin.webContents.openDevTools()
     onewin.loadFile('index.html')
 
     onewin.on('closed',() => {
