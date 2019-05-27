@@ -106,7 +106,7 @@ npm start
 
 > 以上代码，我们调用了两个Electron的API，分别时app、BrowserWindow
 >
-> 前者是负责控制应用的[生命周期](https://electronjs.org/docs/api/app),后者
+> 前者是负责控制应用的[生命周期](https://electronjs.org/docs/api/app),后者负责[创建和控制浏览器窗口](<https://electronjs.org/docs/api/browser-window>)
 
 简单几行代码，我们就创建出一个electron应用，虽然它很简陋，接下来让我们一起探索它！
 
