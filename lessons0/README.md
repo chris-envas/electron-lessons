@@ -104,6 +104,10 @@ npm start
 
 ![start](https://s2.ax1x.com/2019/05/03/EUjPv4.png)
 
+> 以上代码，我们调用了两个Electron的API，分别时app、BrowserWindow
+>
+> 前者是负责控制应用的[生命周期](https://electronjs.org/docs/api/app),后者
+
 简单几行代码，我们就创建出一个electron应用，虽然它很简陋，接下来让我们一起探索它！
 
 
