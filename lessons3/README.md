@@ -46,6 +46,7 @@ app.on('ready', () => {
 `clipboard`支持在主进程和渲染进程中使用。
 
 ```html
+//index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +69,7 @@ app.on('ready', () => {
 ```
 
 ```javascript
+//index.js
 const { clipboard } = require('electron')
 
 clipboard.writeText('Example String')
