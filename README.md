@@ -12,6 +12,7 @@
 - [第一章-征程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons0)  
 - [第二章-主进程与渲染进程](https://github.com/luojinxu520/electron-lessons/tree/master/lessons1)  
 - [第三章-H5拖拽读取本地文件](https://github.com/luojinxu520/electron-lessons/tree/master/lessons2)  
+- [第四章-快捷键注册及复制粘贴](https://github.com/luojinxu520/electron-lessons/tree/master/lessons3)  
 
 加油共勉！！！
 
