@@ -92,3 +92,6 @@ npm start
 ![启动](https://s2.ax1x.com/2019/05/27/VZlTY9.png)
 
 点击粘贴即可获取复制的内容
+
+`clipboard`提供了不止复制粘贴文本的方法，还包括html、图片等许多方法
+[传送门](https://electronjs.org/docs/api/clipboard)
