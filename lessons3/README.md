@@ -2,7 +2,7 @@
 
 #### 系统快捷键（[globalShortcut](https://electronjs.org/docs/api/global-shortcut#%E7%B3%BB%E7%BB%9F%E5%BF%AB%E6%8D%B7%E9%94%AE)）
 
-**进程：**主进程
+进程：主进程
 
 `globalShortcut` 模块可以在操作系统中注册/注销全局快捷键, 以便可以为操作定制各种快捷键。但只能在**主进程**中使用
 
@@ -45,7 +45,7 @@ app.on('ready', () => {
 
 #### 复制粘贴板（[clipboard](https://electronjs.org/docs/api/clipboard#%E5%89%AA%E8%B4%B4%E6%9D%BF)）
 
-**进程：**主进程，渲染进程
+进程：主进程，渲染进程
 
 ```html
 //index.html
