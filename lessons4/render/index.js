@@ -1,8 +1,13 @@
-let fs = require('fs')
+const path = require('path')
+const item = document.querySelector('#openWindow')
+const { BrowserWindow } = require('electron').remote
 
-fs.readFile('package.json',(err,data) => {
-  if(!err){
-    var main = document.querySelector('.main')
-    main.innerHTML = main.innerHTML + data
-  }
+
+item.addEventListener('click', () => {
+  let win = new BrowserWindow({ width: 400, height: 400 })
+  var file = path.join('file:///', __dirname, 'new.html')
+  win.loadURL(file)
+  win.on('closed', function() {
+    win = null
+  })
 })
