@@ -1,28 +1,18 @@
 const {app, BrowserWindow} = require('electron')
 
-let onewin = null
-let twowin = null
+let win = null
 
 app.on('ready', () => {
-    
     var WindowOption = {
-        width:400,
-        height:400,
+        width:800,
+        height:600,
         webPreferences:{
             nodeIntegration:true
        }
     }
-    onewin = new BrowserWindow(WindowOption)
-    onewin.loadFile('index.html')
-
-    onewin.on('closed',() => {
-        win = null
-    })
-
-    twowin = new BrowserWindow(WindowOption)
-    twowin.loadFile('new.html')
-
-    twowin.on('closed',() => {
+    win = new BrowserWindow(WindowOption)
+    win.loadFile('index.html')
+    win.on('closed',() => {
         win = null
     })
 })

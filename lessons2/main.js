@@ -12,6 +12,7 @@ app.on('ready', () => {
     }
     win = new BrowserWindow(WindowOption)
     win.loadFile('index.html')
+    // 默认打开调试窗口
     win.webContents.openDevTools()
     win.on('closed',() => {
         win = null
