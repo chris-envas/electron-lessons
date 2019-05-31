@@ -6,10 +6,10 @@ var electron =require('electron');
 //nodejs中的path模块
 var path=require('path');
 
-//创建electron引用控制应用生命周期的模块
+//创建electron引用     控制应用生命周期的模块
 var app=electron.app;     
 
-//创建electron BrowserWindow的引用 窗口相关的模块
+//创建electron BrowserWindow的引用          窗口相关的模块
 var BrowserWindow=electron.BrowserWindow;
 
 //变量 保存对应用窗口的引用
@@ -19,7 +19,6 @@ var mainWindow=null;
 
 function createWindow(){
     //创建BrowserWindow的实例 赋值给mainWindow打开窗口   
-    //软件默认打开的宽度高度 {width:400,height:400}
     mainWindow=new BrowserWindow({width:800,height:600,webPreferences: {
         nodeIntegration: true
     }}); 
@@ -27,17 +26,13 @@ function createWindow(){
     mainWindow.loadURL(path.join('file:',__dirname,'index.html'));
     
     //开启渲染进程中的调试模式
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     console.log(path.join('file:',__dirname,'index.html'));
 
     mainWindow.on('closed',()=>{
         mainWindow=null;
     })    
-
-    //执行设置菜单操作
-    require('./main/menu.js');
-
 }
 
 app.on('ready',createWindow)
