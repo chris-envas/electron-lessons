@@ -1,99 +1,186 @@
-### 第四章
+### 第六章
 
-#### 系统快捷键（[globalShortcut](https://electronjs.org/docs/api/global-shortcut#%E7%B3%BB%E7%BB%9F%E5%BF%AB%E6%8D%B7%E9%94%AE)）
+#### 菜单模块（[Menu](https://electronjs.org/docs/api/menu)）
 
 进程：主进程
 
-`globalShortcut` 模块可以在操作系统中注册/注销全局快捷键, 以便可以为操作定制各种快捷键。但只能在**主进程**中使用
-
-`globalShortcut`主要接收两个参数，分别为注册的快捷键和回调函数
+`Menu` 创建原生应用菜单和上下文菜单。
 
 ```javascript
-//main.js
-const {app, BrowserWindow, globalShortcut} = require('electron')
+//menu.js
+//创建Electron通过remote模块引用Menu模块
+const {Menu} = require('electron').remote;
 
-let win = null
+//自定义菜单模板
+var template = [
+    {
+      label: 'Edit',
+      submenu: [
+        {
+          label: 'Undo',
+          accelerator: 'CmdOrCtrl+Z',
+          role: 'undo'
+        },
+        {
+          label: 'Redo',
+          accelerator: 'Shift+CmdOrCtrl+Z',
+          role: 'redo'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Cut',
+          accelerator: 'CmdOrCtrl+X',
+          role: 'cut'
+        },
+        {
+          label: 'Copy',
+          accelerator: 'CmdOrCtrl+C',
+          role: 'copy'
+        },
+        {
+          label: 'Paste',
+          accelerator: 'CmdOrCtrl+V',
+          role: 'paste'
+        },
+        {
+          label: 'Select All',
+          accelerator: 'CmdOrCtrl+A',
+          role: 'selectall'
+        },
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click: function(item, focusedWindow) {
+            if (focusedWindow)
+              focusedWindow.reload();
+          }
+        },
+        {
+          label: 'Toggle Full Screen',
+          accelerator: (function() {
+            if (process.platform == 'darwin')
+              return 'Ctrl+Command+F';
+            else
+              return 'F11';
+          })(),
+          click: function(item, focusedWindow) {
+            if (focusedWindow)
+              focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+          }
+        },
+        {
+          label: 'Toggle Developer Tools',
+          accelerator: (function() {
+            if (process.platform == 'darwin')
+              return 'Alt+Command+I';
+            else
+              return 'Ctrl+Shift+I';
+          })(),
+          click: function(item, focusedWindow) {
+            if (focusedWindow)
+              focusedWindow.toggleDevTools();
+          }
+        },
+      ]
+    },
+    {
+      label: 'Window',
+      role: 'window',
+      submenu: [
+        {
+          label: 'Minimize',
+          accelerator: 'CmdOrCtrl+M',
+          role: 'minimize'
+        },
+        {
+          label: 'Close',
+          accelerator: 'CmdOrCtrl+W',
+          role: 'close'
+        },
+      ]
+    },
+    {
+      label: 'Help',
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click: function() { require('electron').shell.openExternal('http://electron.atom.io') }
+        },
+      ]
+    },
+  ];
+  
+  if (process.platform == 'darwin') {
+    var name = require('electron').remote.app.getName();
+    template.unshift({
+      label: name,
+      submenu: [
+        {
+          label: 'About ' + name,
+          role: 'about'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Services',
+          role: 'services',
+          submenu: []
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Hide ' + name,
+          accelerator: 'Command+H',
+          role: 'hide'
+        },
+        {
+          label: 'Hide Others',
+          accelerator: 'Command+Alt+H',
+          role: 'hideothers'
+        },
+        {
+          label: 'Show All',
+          role: 'unhide'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click: function() { app.quit(); }
+        },
+      ]
+    });
+    // Window menu.
+    template[3].submenu.push(
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Bring All to Front',
+        role: 'front'
+      }
+    );
+  }
+  
+// 生成菜单信息MenuItem
+var menu = Menu.buildFromTemplate(template);
 
-app.on('ready', () => {
-    var WindowOption = {
-        width:800,
-        height:600,
-        webPreferences:{
-            nodeIntegration:true
-       }
-    }
-    win = new BrowserWindow(WindowOption)
-    win.loadFile('index.html')
-    win.on('closed',() => {
-        win = null
-    })
-
-    const ret = globalShortcut.register('CommandOrControl+X', () => {
-        console.log('CommandOrControl+X is pressed')
-    })
-
-    if (!ret) {
-        console.log('registration failed')
-    }
-    
-    // 检查快捷键是否注册成功
-    console.log(globalShortcut.isRegistered('CommandOrControl+X'))
-})
+//设置程序菜单到程序窗口
+Menu.setApplicationMenu(menu);
 ```
 
+[菜单模板配置参数等相关信息](https://electronjs.org/docs/api/menu-item)
 
 
-#### 复制粘贴板（[clipboard](https://electronjs.org/docs/api/clipboard#%E5%89%AA%E8%B4%B4%E6%9D%BF)）
-
-进程：主进程，渲染进程
-
-```html
-//index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>electron</title>
-    <style>
-    
-    </style>
-</head>
-<body>
-    <div>
-        <span id="paste">粘贴</span>
-        <input id='copyInput' type="text" placeholder='已复制! 请在这里执行粘贴'>
-    </div>
-    <script src="render/index.js"></script>
-</body>
-</html>
-```
-
-```javascript
-//index.js
-const { clipboard } = require('electron')
-
-clipboard.writeText('Example String')
-
-let copyInput = document.querySelector('#copyInput')
-let paste = document.querySelector('#paste')
-
-paste.addEventListener('click', function() {
-    if (copyInput.value !== '') copyInput.value = ''
-    copyInput.value = clipboard.readText()
-})
-```
-
-启动
-
-```shell
-npm start
-```
-
-![启动](https://s2.ax1x.com/2019/05/27/VZlTY9.png)
-
-点击粘贴即可获取复制的内容
-
-`clipboard`提供了不止复制粘贴文本的方法，还包括html、图片等许多方法
-[传送门](https://electronjs.org/docs/api/clipboard)

@@ -10,35 +10,77 @@
 
 ```javascript
 //main.js
-const {app, BrowserWindow, globalShortcut} = require('electron')
+//主进程
 
-let win = null
+//引入electron模块
+var electron =require('electron');
 
-app.on('ready', () => {
-    var WindowOption = {
-        width:800,
-        height:600,
-        webPreferences:{
-            nodeIntegration:true
-       }
-    }
-    win = new BrowserWindow(WindowOption)
-    win.loadFile('index.html')
-    win.on('closed',() => {
-        win = null
-    })
+//nodejs中的path模块
+var path=require('path');
+
+//创建electron引用     控制应用生命周期的模块
+var app=electron.app;     
+
+//创建electron BrowserWindow的引用          窗口相关的模块
+var BrowserWindow=electron.BrowserWindow;
+
+
+// 调用全局快捷键注册模块
+var globalShortcut = electron.globalShortcut
+
+//变量 保存对应用窗口的引用
+
+var mainWindow=null;
+
+
+function createWindow(){
+    //创建BrowserWindow的实例 赋值给mainWindow打开窗口   
+    mainWindow=new BrowserWindow({width:800,height:600,webPreferences: {
+        nodeIntegration: true
+    }}); 
+
+    mainWindow.loadURL(path.join('file:',__dirname,'index.html'));
+    
+    //开启渲染进程中的调试模式
+    // mainWindow.webContents.openDevTools();
+
+    console.log(path.join('file:',__dirname,'index.html'));
+
+    mainWindow.on('closed',()=>{
+        mainWindow=null;
+    })    
 
     const ret = globalShortcut.register('CommandOrControl+X', () => {
         console.log('CommandOrControl+X is pressed')
     })
-
     if (!ret) {
         console.log('registration failed')
     }
-    
     // 检查快捷键是否注册成功
     console.log(globalShortcut.isRegistered('CommandOrControl+X'))
-})
+}
+
+app.on('ready',createWindow)
+
+
+// 当所有的窗口被关闭后退出应用   Quit when all windows are closed.
+app.on('window-all-closed', () => {
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+
+    // 对于OS X系统，应用和相应的菜单栏会一直激活直到用户通过Cmd + Q显式退出
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
+  });
+  
+//macos
+app.on('activate', () => {
+// 对于OS X系统，当dock图标被点击后会重新创建一个app窗口，并且不会有其他
+    if (mainWindow === null) {
+        createWindow();
+    }
+});
 ```
 
 
@@ -72,13 +114,16 @@ app.on('ready', () => {
 
 ```javascript
 //index.js
+//创建Electron并引用复制模块
 const { clipboard } = require('electron')
 
+//提前复制好一段文本
 clipboard.writeText('Example String')
 
 let copyInput = document.querySelector('#copyInput')
 let paste = document.querySelector('#paste')
 
+//监听事件 并将复制内容输出到对应的DOM元素中
 paste.addEventListener('click', function() {
     if (copyInput.value !== '') copyInput.value = ''
     copyInput.value = clipboard.readText()

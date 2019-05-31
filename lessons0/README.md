@@ -60,32 +60,68 @@ $ npm i electron --save
 
 ```javascript
 //main.js
-const {app, BrowserWindow} = require('electron')
+//主进程
 
-let mainWindow = null
+//引入electron模块
+var electron =require('electron');
 
-// Electron初始化后，执行该回调函数
-app.on('ready', () => {
-    // 窗口配置参数
-    var WindowOption = {
-        width:400,
-        height:400
+//nodejs中的path模块
+var path=require('path');
+
+//创建electron引用     控制应用生命周期的模块
+var app=electron.app;     
+
+//创建electron BrowserWindow的引用          窗口相关的模块
+var BrowserWindow=electron.BrowserWindow;
+
+//变量 保存对应用窗口的引用
+var mainWindow=null;
+
+function createWindow(){
+    //创建BrowserWindow的实例 赋值给mainWindow打开窗口   
+    mainWindow=new BrowserWindow({width:800,height:600,webPreferences: {
+        nodeIntegration: true
+    }}); 
+  
+    mainWindow.loadFile(path.join('index.html'));
+    //开启渲染进程中的调试模式
+    mainWindow.webContents.openDevTools();
+
+    mainWindow.on('closed',()=>{
+        mainWindow=null;
+    })    
+
+}
+
+app.on('ready',createWindow)
+
+
+// 当所有的窗口被关闭后退出应用   Quit when all windows are closed.
+app.on('window-all-closed', () => {
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+
+    // 对于OS X系统，应用和相应的菜单栏会一直激活直到用户通过Cmd + Q显式退出
+    if (process.platform !== 'darwin') {
+      app.quit();
     }
-    // 实例化窗口
-    mainWindow = new BrowserWindow(WindowOption)
-    // 加载界面
-    mainWindow.loadFile('index.html')
-	//窗口被关闭时
-    mainWindow.on('closed',() => {
-        mainWindow = null
-    })
-})
+  });
+  
+//macos
+app.on('activate', () => {
+// 对于OS X系统，当dock图标被点击后会重新创建一个app窗口，并且不会有其他
+    if (mainWindow === null) {
+        createWindow();
+    }
+});
+
 ```
 
 ```javascript
 //package.json
 {
 ...
+  //新增npm指令
   "scripts": {
     +"start": "electron ."
   },

@@ -1,6 +1,4 @@
-var remote=require('electron').remote;
-
-const Menu=remote.Menu;
+const {Menu} = require('electron').remote;
 var template = [
     {
       label: 'Edit',
@@ -163,6 +161,5 @@ var template = [
     );
   }
   
-  var menu = Menu.buildFromTemplate(template);
-//   Menu.setApplicationMenu(menu);
-  Menu.sendActionToFirstResponder(menu);
+var menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
