@@ -96,7 +96,11 @@ app.on('activate', () => {
 });
 ```
 
+启动
 
+```javascript
+npm start
+```
 
 #### 扩展
 

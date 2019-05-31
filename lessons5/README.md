@@ -65,6 +65,12 @@ window.addEventListener('contextmenu',function(e){
 
 [菜单模板配置参数等相关信息](https://electronjs.org/docs/api/menu-item)
 
+启动
+
+```javascript
+npm start
+```
+
 
 
 
