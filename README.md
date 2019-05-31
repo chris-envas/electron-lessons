@@ -16,6 +16,7 @@
 - [第三章-H5拖拽读取本地文件](https://github.com/luojinxu520/electron-lessons/tree/master/lessons2)  
 - [第四章-快捷键注册及复制粘贴](https://github.com/luojinxu520/electron-lessons/tree/master/lessons3)  
 - [第五章-渲染进程调用主进程模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons4)
+- [第六章-菜单模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons4)
 
 加油共勉！！！
 
