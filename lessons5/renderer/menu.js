@@ -49,6 +49,6 @@ Menu.setApplicationMenu(menu);
 window.addEventListener('contextmenu',function(e){
     //阻止当前窗口默认事件
     e.preventDefault();
-    //在当前窗口点击右键的时候弹出  定义的菜单模板
+    //在当前窗口点击右键的时候弹出默认窗口  remote获取定义好的菜单模板
     menu.popup({window:remote.getCurrentWindow()})
 },false)
