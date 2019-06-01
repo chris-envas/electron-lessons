@@ -5,21 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-    <style>    
-        .content{
-            width: 100%;
-            height: 400px;
-            background: orange;
-            overflow-y: auto;
-        }
-    </style>
-  
 </head>
 <body>
   <div>
-      菜单栏目操作
-      <script src="./renderer/menu.js"></script>
+      <button class="sendMain">发送一条异步消息到主进程</button>
+      <button class="sendMainSync">发送一条同步消息到主进程</button>
+      <script src="./renderer/ipcRenderer.js"></script>
   </div>
 </body>
 </html>

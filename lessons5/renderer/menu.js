@@ -1,12 +1,3 @@
-### 第六章
-
-#### 菜单模块（[Menu](https://electronjs.org/docs/api/menu)）
-
-进程：主进程
-
-`Menu` 创建原生应用菜单和上下文菜单。
-
-```javascript
 //在渲染进程调用Menu模块
 const {Menu}=require('electron').remote;
 
@@ -49,30 +40,15 @@ var template=[
     }
 ]
 
+
 var menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
+
 
 //右键菜单事件
 window.addEventListener('contextmenu',function(e){
     //阻止当前窗口默认事件
     e.preventDefault();
-
-    //在当前窗口点击右键的时候弹出  定义的菜单模板
+    //在当前窗口点击右键的时候弹出默认窗口  remote获取定义好的菜单模板
     menu.popup({window:remote.getCurrentWindow()})
-
 },false)
-```
-
-[菜单模板配置参数等相关信息](https://electronjs.org/docs/api/menu-item)
-
-启动
-
-```javascript
-npm start
-```
-
-
-
-
-
-

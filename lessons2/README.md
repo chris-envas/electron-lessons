@@ -11,27 +11,27 @@
 
 
 ```javascript
+// nodejs中的fs模块
 var fs=require('fs');
 
+// 获取body
 var content=document.getElementsByTagName('body')[0]
 
+//取消H5拖拽事件默认行为 
 content.ondragenter=content.ondragover=content.ondragleave=function(){
     return false; /*阻止默认行为*/
 }
 
+// 监听拖拽事件ondrop（松手）时读取文件内容，并输出到页面中
 content.ondrop=function(e){
     //阻止默认行为
     e.preventDefault();     
-
+    // 打印拖拽的文件
     console.log(e.dataTransfer.files[0]);
-
     var path=e.dataTransfer.files[0].path;
     fs.readFile(path,'utf-8',(err,data)=>{
-
         if(err){
-
             console.log(err);
-
             return false;
         }
         content.innerHTML=data;
@@ -40,6 +40,12 @@ content.ondrop=function(e){
 ```
 
 
+
+启动
+
+```javascript
+npm start
+```
 
 ###  扩展
 
