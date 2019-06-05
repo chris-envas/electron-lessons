@@ -10,8 +10,6 @@
 
 ```javascript
 //main.js
-//主进程
-
 //引入electron模块
 var electron =require('electron');
 
@@ -24,14 +22,12 @@ var app=electron.app;
 //创建electron BrowserWindow的引用          窗口相关的模块
 var BrowserWindow=electron.BrowserWindow;
 
-
 // 调用全局快捷键注册模块
 var globalShortcut = electron.globalShortcut
 
 //变量 保存对应用窗口的引用
 
 var mainWindow=null;
-
 
 function createWindow(){
     //创建BrowserWindow的实例 赋值给mainWindow打开窗口   
@@ -88,6 +84,8 @@ app.on('activate', () => {
 #### 复制粘贴板（[clipboard](https://electronjs.org/docs/api/clipboard#%E5%89%AA%E8%B4%B4%E6%9D%BF)）
 
 进程：主进程，渲染进程
+
+以下是完整实例
 
 ```html
 //index.html
