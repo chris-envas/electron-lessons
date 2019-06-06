@@ -20,11 +20,11 @@ Electron使用前端技术作为APP的GUI,可以把它当做一个小型的Chrom
 
 根据上面的说法，我们马上尝试一下两个练习
 
-1、打开APP的时候启动两个窗口
+- 打开APP的时候启动两个窗口
 
-2、利用nodejs获取`package.json`的内容
+- 利用nodejs获取`package.json`的内容
 
-新建`index.html`、`new.html`
+1、准备两个页面
 
 ```html
 //index.html
@@ -62,20 +62,7 @@ Electron使用前端技术作为APP的GUI,可以把它当做一个小型的Chrom
 </body>
 </html>
 ```
-
-```javascript
-//index.js
-// nodejs中的fs模块
-let fs = require('fs')
-
-// 读取package.json的内容并输出到页面中
-fs.readFile('package.json',(err,data) => {
-  if(!err){
-    var main = document.querySelector('.main')
-    main.innerHTML = main.innerHTML + data
-  }
-})
-```
+2、主进程配置窗口的参数，加载页面
 
 ```javascript
 //主进程
@@ -143,6 +130,23 @@ app.on('activate', () => {
     }
 });
 ```
+
+3、利用`fs`模块读取文件信息，并输出到页面中
+
+```javascript
+//index.js
+// nodejs中的fs模块
+let fs = require('fs')
+
+// 读取package.json的内容并输出到页面中
+fs.readFile('package.json',(err,data) => {
+  if(!err){
+    var main = document.querySelector('.main')
+    main.innerHTML = main.innerHTML + data
+  }
+})
+```
+
 
 **启动**
 

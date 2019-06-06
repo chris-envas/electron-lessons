@@ -10,6 +10,8 @@
 
 
 
+以下是实例代码
+
 ```javascript
 // nodejs中的fs模块
 var fs=require('fs');
