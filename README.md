@@ -17,7 +17,8 @@
 - [第四章-快捷键注册及复制粘贴](https://github.com/luojinxu520/electron-lessons/tree/master/lessons3)  
 - [第五章-渲染进程调用主进程模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons4)
 - [第六章-菜单模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons5)
-- [第七章-渲染进程与主进程的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons6)
+- [第七章-渲染进程与主进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons6)
+- [第八章-渲染进程与渲染进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons7)
 
 加油共勉！！！
 
