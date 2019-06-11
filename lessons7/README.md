@@ -1,4 +1,4 @@
-### 第七章
+### 第八章
 
 #### 渲染进程与渲染进程的通信（[webContents](https://electronjs.org/docs/api/web-contents)）
 
@@ -25,7 +25,7 @@ const { ipcRenderer } = require('electron')
 // 获取DOM
 const sendNews = document.querySelector('.sendNews')
 
-// 渲染进程向主进程发送信息
+// 渲染进程向主进程openWindow事件
 sendNews.addEventListener('click', function() {
     var news = Math.random();
     ipcRenderer.send('openWindow',news);
@@ -39,7 +39,9 @@ ipcRenderer.on('toIndex', function(event,data) {
 
 2、紧接着，在主进程中，通过`ipcMain`模块监听到渲染进程发来的消息，再利用`BrowserWindow`创建窗口，最后就是本文的重点，使用`webContents`属性监听窗口创建完成后，将消息发送到新的窗口
 
-> 利用`webContents`发送的消息中还包含了`BrowserWindow.getFocusedWindow().id`传递的当前窗口的指针ID,这一做法的目的，是为了新窗口在接收到信息的同时，还能知道是那个窗口发送而来的信息
+> 利用`webContents`发送的消息中还包含了`BrowserWindow.getFocusedWindow().id`传递的当前窗口的指针id。
+>
+> 这一做法的目的，是为了新窗口在接收到信息的同时，获取到发送消息的窗口的对象`BrowserWindow`对象
 
 ```javascript
 // ipcMain.js
@@ -62,7 +64,10 @@ ipcMain.on('openWindow', function(event, data) {
     })
     // 加载页面
     win.loadURL(path.join('file:',__dirname,'../news.html'));
-    // 窗口加载完毕后发送toNews消息 将index页面发送的消息及winId发送出去
+    /*
+    窗口加载完毕后（did-finish-load）发送toNews消息 
+    发送的内容分别为，index页面发送的消息及index页面的窗口Id
+    */
     win.webContents.on('did-finish-load', function() {
         win.webContents.send('toNews',data,winId)
     })
@@ -96,4 +101,4 @@ npm start
 
 
 
-从上文代码示例，我们可以知道渲染进程间的通信依赖的就是[webContents](https://electronjs.org/docs/api/web-contents#webcontents)。`webContents` 是 [EventEmitter ](https://nodejs.org/api/events.html#events_class_eventemitter)的实例， 负责渲染和控制网页, 是 [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) 对象的一个属性
+从上文代码示例，我们可以知道渲染进程间的通信关键在于[webContents](https://electronjs.org/docs/api/web-contents#webcontents)。`webContents` 是 [EventEmitter ](https://nodejs.org/api/events.html#events_class_eventemitter)的一个实例， 负责渲染和控制网页, 是 [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) 对象的一个属性
