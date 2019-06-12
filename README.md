@@ -19,6 +19,7 @@
 - [第六章-菜单模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons5)
 - [第七章-渲染进程与主进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons6)
 - [第八章-渲染进程与渲染进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons7)
-
+- [第九章-渲染进程与渲染进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons8)
+- [第十章-系统对话框模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons9)
 加油共勉！！！
 
