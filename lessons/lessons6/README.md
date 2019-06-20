@@ -10,6 +10,10 @@ ipcRenderer: 渲染进程
 
 从渲染器进程到主进程的异步通信。
 
+
+
+下面是一个完整的代码实例
+
 ```javascript
 //index.html
 <!DOCTYPE html>

@@ -6,6 +6,10 @@
 
 `Menu` 创建原生应用菜单和上下文菜单。
 
+
+
+下面是部分实例代码
+
 ```javascript
 //在渲染进程调用Menu模块
 const {Menu}=require('electron').remote;
