@@ -28,8 +28,7 @@ function createWindow(){
     //开启渲染进程中的调试模式
     // mainWindow.webContents.openDevTools();
 
-    console.log(path.join('file:',__dirname,'index.html'));
-
+    require('./main/ipcMain')
     mainWindow.on('closed',()=>{
         mainWindow=null;
     })    
