@@ -1,5 +1,5 @@
 
-var {Menu,shell,ipcMain,BrowserWindow} =require('electron');
+var {Menu,shell,ipcMain,BrowserWindow,app} =require('electron');
 
 var template = [
     {
@@ -7,44 +7,46 @@ var template = [
         submenu: [
             {
                 label: '新建',
+                accelerator: 'Ctrl+N',
                 click: function(){
-                   
-
+                   //新建 
+                   BrowserWindow.getFocusedWindow().webContents.send('action','new');
                 }
 
             },
             {
                 label: '打开',
+                accelerator: 'Ctrl+O',
                 click: function(){
-                    // 主进程向渲染进程发送消息
-                    BrowserWindow.getFocusedWindow().webContents.send('action','open')
+                    // 打开文件
+                    BrowserWindow.getFocusedWindow().webContents.send('action','open');
                 }
             },
             
             {   
                 label: '保存',
+                accelerator: 'Ctrl+S',
                 click: function(){
-                    // 主进程向渲染进程发送消息
-                    BrowserWindow.getFocusedWindow().webContents.send('action','save')
+                    // 保存文件
+                    BrowserWindow.getFocusedWindow().webContents.send('action','save');
                 }
             },
             {
                 type: 'separator'
             },
-          
-         
             {
                 label: '打印',
+                accelerator: 'Ctrl+I',
                 click: function(){
-
-                        
+                    BrowserWindow.getFocusedWindow().webContents.print();  
                 }
             },
             {
                 label: '退出',
+                accelerator: 'Ctrl+Q',
                 click: function(){
-                                              
-                }
+                   BrowserWindow.getFocusedWindow().webContents.send('action','exit')                    
+                }   
             }
         ]
     },
@@ -118,9 +120,7 @@ var template = [
             {
                 label: '关于',
                 click() { 
-                    
-                    shell.openExternal('https://www.itying.com');
-                
+                    shell.openExternal('https://github.com/luojinxu520/electron-lessons');
                 }
             }
         ]
@@ -132,17 +132,17 @@ Menu.setApplicationMenu(m);
 
 
 const contextMenuTemplate=[
-    {
-        label: '撤销',
-        role: 'undo'
-    },
-    {
-        label: '恢复',
-        role: 'redo'
-    },
-    {
-        type: 'separator'
-    },
+    // {
+    //     label: '撤销',
+    //     role: 'undo'
+    // },
+    // {
+    //     label: '恢复',
+    //     role: 'redo'
+    // },
+    // {
+    //     type: 'separator'
+    // },
     {   label: '截切',
         role: 'cut'
     },
@@ -163,6 +163,10 @@ const contextMenuTemplate=[
 var contextMenu=Menu.buildFromTemplate(contextMenuTemplate);
 
 // 监听右键事件
-ipcMain.on('contextMenu',function(){
+ipcMain.on('contextMenu',() => {
     contextMenu.popup(BrowserWindow.getFocusedWindow())
+})
+
+ipcMain.on('exit-app', () => {
+    app.quit();
 })

@@ -3,10 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="static/css/index.css">
   </head>
   <body>
-    <textarea id="edit"></textarea>
+    <textarea id="edit" style="resize:none;"></textarea>
   </body>
-  <script src="./renderer/ipcRenderer.js"></script>
+  <link rel=stylesheet href="static/codemirror/doc/docs.css">
+  <link rel="stylesheet" href="static/codemirror/lib/codemirror.css">
+  <script src="static/codemirror/lib/codemirror.js"></script>
+  <script src="static/codemirror/addon/selection/selection-pointer.js"></script>
+  <script src="static/codemirror/mode/xml/xml.js"></script>
+  <script src="static/codemirror/mode/javascript/javascript.js"></script>
+  <script src="static/codemirror/mode/css/css.js"></script>
+  <script src="static/codemirror/mode/vbscript/vbscript.js"></script>
+  <script src="static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="renderer/ipcRenderer.js"></script>
+  <script>
+      var mixedMode = {
+        name: "htmlmixed",
+        scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
+                       mode: null},
+                      {matches: /(text|application)\/(x-)?vb(a|script)/i,
+                       mode: "vbscript"}]
+      };
+      var edit = CodeMirror.fromTextArea(document.getElementById("edit"), {
+        mode: mixedMode,
+        selectionPointer: true,
+        lineNumbers:true
+      });
+    </script>
+    <style>
+      .CodeMirror{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+    </style>
 </html>
