@@ -1,6 +1,5 @@
-### 第十一章
+### 实现一个编辑器吧！
 
-实现一个编辑器吧！
 基于electron-forge脚手架开发
 ```
 npm install -g electron-forge
