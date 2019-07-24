@@ -102,3 +102,36 @@ npm start
 
 
 从上文代码示例，我们可以知道渲染进程间的通信关键在于[webContents](https://electronjs.org/docs/api/web-contents#webcontents)。`webContents` 是 [EventEmitter ](https://nodejs.org/api/events.html#events_class_eventemitter)的一个实例， 负责渲染和控制网页, 是 [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) 对象的一个属性
+
+
+
+扩展
+
+----
+
+
+
+文章本来到这里就应该结束了，最近发现了关于`webContents`的一些其他用法，直接上代码了
+
+```javascript
+ipcMain.on('open-music-file', (event) => {
+    dialog.showOpenDialog({
+      properties: ['openFile','multiSelections'],
+      filters: [
+        { name: 'Music', extensions: ['mp3'] }
+      ]
+    },(filesPath) => {
+      if(filesPath) {
+        event.sender.send('selected-file', filesPath);
+      }
+    })
+  })
+```
+
+从以上代码中可以看到，我使用`ipcMain`监听渲染进程一个名为`open-music-file`的事件，通过`dialog`模块打开文件对话框，当选中文件后，我设置在`dialog.showOpenDialog`的回调函数就可以获取选中的文件路径，接下来就是重点，我使用了`ipcMain`回调函数中的`event`对象触发了`selected-file`事件传递了文件路径信息
+
+重点就是
+
+[event.sender](https://electronjs.org/docs/api/ipc-main#eventsender)会返回`webContents`对象，所以`event.sender.send`可以出发对应地渲染进程的事件监听
+
+更新于2019-07-24
