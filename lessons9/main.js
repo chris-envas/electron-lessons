@@ -19,6 +19,7 @@ var mainWindow=null;
 
 function createWindow(){
     //创建BrowserWindow的实例 赋值给mainWindow打开窗口   
+    //软件默认打开的宽度高度 {width:400,height:400}
     mainWindow=new BrowserWindow({width:800,height:600,webPreferences: {
         nodeIntegration: true
     }}); 
@@ -26,11 +27,17 @@ function createWindow(){
     mainWindow.loadURL(path.join('file:',__dirname,'index.html'));
     
     //开启渲染进程中的调试模式
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
+
+    console.log(path.join('file:',__dirname,'index.html'));
 
     mainWindow.on('closed',()=>{
         mainWindow=null;
     })    
+
+  
+    require('./main/ipcMain.js');
+
 }
 
 app.on('ready',createWindow)

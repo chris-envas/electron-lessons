@@ -4,6 +4,35 @@
 
 进程：主进程
 
+**截止2020-02-01，electron已升级为7.0以上版本，所以的dialog的API都新增了Promise功能**，我将用一个最简单的例子演示
+
+```javascript
+// 7.0以下版本
+const option = {
+    type: 'info',
+    title: '信息',
+    message: '这是一条信息对话框',
+    buttons: ['yes','no']
+}
+dialog.showMessageBox(option,function (index) {
+    alert(index)
+})
+// 7.0版本 新增promise用法
+const option = {
+    type: 'info',
+    title: '信息',
+    message: '这是一条信息对话框',
+    buttons: ['yes','no']
+}
+dialog.showMessageBox(option).then((result) {
+    alert(result)
+})
+```
+
+注：更新于2020-02-01
+
+
+
 `Electron`为我们提供了桌面端的提示对话框形式，下面让我们共同了解一下
 
 
