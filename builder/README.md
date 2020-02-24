@@ -191,17 +191,17 @@ npm run pack
 
 打包成功！！项目根目录生成一个dist目录，里面就是打包后的应用
 
-制作electron程序安装包
+接下来制作electron程序安装包，与上述步骤一样，electron-builder会进行构建
 
 ```javascript
 npm run dist
 ```
 
-查看成果
 
 
 
 
+## 其他
 
 **如果你出现以下报错，很有可能是网络问题，参照开头所讲**
 
