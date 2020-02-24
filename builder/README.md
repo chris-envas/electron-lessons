@@ -77,11 +77,10 @@ app.on('ready', () => {
 测试项目运行是否正常
 
 ```shell
-yarn start 
-yarn electron 
+yarn dev
 ```
 
-开始构建项目安装包
+如果可以正常启动，则开始构建项目安装包
 
 > electron-builder在构建打包时，是依赖于项目中package.json的配置项进行打包的，配置中注释的部分，都是为了配合electron-builder的打包需求
 
@@ -175,13 +174,13 @@ yarn electron
 }
 ```
 
-react打包
+先对react进行打包
 
 ```java
 npm run build
 ```
 
-测试electron打包
+测试electron打包（注意，这里打包的结果，是直接输出安装包的目录，不是一个可安装的程序包）
 
 ```javascript
 npm run pack
@@ -221,5 +220,18 @@ github.com/develar/app-builder/pkg/download.(*Part).doRequest
 
 
 
+## 结束
 
+你可以直接[clone](https://github.com/luojinxu520/electron-lessons/tree/master/builder/)项目代码，运行尝试打包！本文步骤，笔者均已测试完毕！
 
+electron的打包工具有以下几个
+
+-  **[electron-builder](https://github.com/electron-userland/electron-builder)** 
+-  **[electron-packager](https://github.com/electron/electron-packager)** 
+
+主流的全家桶开发环境，供你选择
+
+-  **[electron-react-boilerplate- react全家桶+webpack+electron+electron-builder](https://github.com/electron-react-boilerplate/electron-react-boilerplate)**
+-   **[electron-vue - vue全家桶+webpack+electron+electron-packger+electron-builder](https://github.com/SimulatedGREG/electron-vue)** 
+
+本文仅此，抛砖引玉，希望能对你有所帮助！
