@@ -29,9 +29,13 @@
 #### 练习
 - [实现一个编辑器](https://github.com/luojinxu520/electron-lessons/tree/master/combat/edit)
 
+#### 打包
+
+- [尝试打包吧！](https://github.com/luojinxu520/electron-lessons/tree/master/builder/)
+
 #### 项目
 
-- [云文档编辑器](https://github.com/luojinxu520/electron-lessons.git)
+- [飞鸽-基于React与Electron开发的文档处理工具](https://github.com/luojinxu520/pigeon)
 
 
 
