@@ -284,7 +284,7 @@ npm run build-main
 
 electron-builder提供了几种[publish](https://www.electron.build/configuration/publish#githuboptions)的方法,本文选用github,作为自动发布的平台
 
-首先，你需要在github生成个人访问令牌，[personal access token](https://github.com/settings/tokens),记住生成的token直会显示一次，记得保存好
+首先，你需要在github生成个人访问令牌，[personal access token](https://github.com/settings/tokens), **记住生成的token只会显示一次，记得保存好**
 
 具体的操作，请参考 [这篇文章](https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 
@@ -348,5 +348,7 @@ electron的打包工具有以下几个
 ### 关于自动发布
 
 往后有新的版本发布怎么办？只需要修改package.json中的 **version** 字段即可，electron-builder以它作为版本发布的校验规则！
+
+你也可以在[这里](https://www.electron.build/configuration/publish)，找到更多publish的平台发布方法
 
 本文仅此，抛砖引玉，希望能对你有所帮助！
