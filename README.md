@@ -25,13 +25,12 @@
 - [第八章-渲染进程与渲染进程间的通信](https://github.com/luojinxu520/electron-lessons/tree/master/lessons7)
 - [第九章-管理应用程序文件及url的加载方式](https://github.com/luojinxu520/electron-lessons/tree/master/lessons8)
 - [第十章-系统对话框模块](https://github.com/luojinxu520/electron-lessons/tree/master/lessons9)
+- 持续更新中...
 
-#### 练习
-- [实现一个编辑器](https://github.com/luojinxu520/electron-lessons/tree/master/combat/edit)
 
-#### 打包
+#### 其他
 
-- [尝试打包吧！](https://github.com/luojinxu520/electron-lessons/tree/master/builder/)
+- [构建安装包及自动发布](https://github.com/luojinxu520/electron-lessons/tree/master/builder/)
 
 #### 项目
 

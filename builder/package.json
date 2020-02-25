@@ -1,5 +1,6 @@
 {
   "name": "builder",
+  "repository": "https://github.com/luojinxu520/electron-lessons",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,14 +13,16 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0",
-    "wait-port": "^0.2.7"
+    "wait-port": "^0.2.7",
+    "webpack": "^4.41.6"
   },
   "devDependencies": {
     "electron": "^8.0.1",
-    "electron-builder": "^22.3.2"
+    "electron-builder": "^22.3.2",
+    "webpack-cli": "^3.3.11"
   },
   "homepage": "./",
-  "main": "main.js",
+  "main": "./build/main.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -27,7 +30,10 @@
     "eject": "react-scripts eject",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "dev": "concurrently \"wait-port http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\""
+    "build-main": "webpack",
+    "dev": "concurrently \"wait-port http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
+    "release": "cross-env GH_TOKEN=822aac8df6d4d6237d29475e02aee30c42185a59 electron-builder",
+    "prereleas": "npm run build && npm run build-main"
   },
   "author": {
     "name": "your name",
@@ -42,6 +48,7 @@
     "directories": {
       "buildResources": "assets"
     },
+    "publish": ["github"],
     "mac": {
       "category": "public.app-category.productivity",
       "artifactName": "${productName}-${version}-${arch}.${text}"
