@@ -32,7 +32,7 @@
     "dist": "electron-builder",
     "build-main": "webpack",
     "dev": "concurrently \"wait-port http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
-    "release": "cross-env GH_TOKEN=822aac8df6d4d6237d29475e02aee30c42185a59 electron-builder",
+    "release": "cross-env GH_TOKEN=personal access token electron-builder",
     "prereleas": "npm run build && npm run build-main"
   },
   "author": {

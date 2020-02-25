@@ -262,7 +262,7 @@ module.exports = {
 yarn add webpack
 ```
 
-开始进行elctron的主进程文件打包构建过程中
+开始进行elctron的主进程文件打包
 
 > webpack还要求你另外安装webpack-cli,直接yes通过即可，原因是webpack目前分离webpack-cli的部分，所以独立进行安装
 
@@ -296,7 +296,7 @@ OK，修改package.json,如下所示：
  +"repository": "xxx.com", // 注明你的仓库地址，
   "scripts": {
     ...
-  + "release": "cross-env GH_TOKEN=822aac8df6d4d6237d29475e02aee30c42185a59 electron-builder", // 自动发布脚本
+  + "release": "cross-env GH_TOKEN=personal access token electron-builder", // 自动发布脚本
     ...
   + "prerelease": "npm run build && npm run build-main",
   },
@@ -311,9 +311,9 @@ OK，修改package.json,如下所示：
 
 最重要的就是**release**字段，它将作为我们构建发布的脚本
 
- `cross-env GH_TOKEN=822aac8df6d4d6237d29475e02aee30c42185a59 electron-builder`
+ `cross-env GH_TOKEN=personal access token electron-builder`
 
-cross-env是可靠的跨平台设置环境变量的依赖，这里我们需要设置一个环境变量 **GH_TOKEN**，electron-builder 检测到这个环境变量，就会自动进行发布，该环境变量的值就是我们最开始申请的token!
+cross-env是可靠的跨平台设置环境变量的依赖，这里我们需要设置一个环境变量 **GH_TOKEN**，electron-builder 检测到这个环境变量，就会自动进行发布，该环境变量的值就是我们最开始申请的 **token**!
 
 ```javascript
 npm run release
